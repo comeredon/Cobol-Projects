@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "rocketsoftware.rocket-cobol",
+    "rocketsoftware.rocket-enterprise",
+    "github.copilot-chat",
+    "zowe.vscode-extension-for-zowe"
+  ]
+}

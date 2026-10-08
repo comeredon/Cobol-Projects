@@ -1,0 +1,13 @@
+{
+  "rocketCOBOL.editor.dialect": "Enterprise COBOL for z/OS",
+  "rocketCOBOL.editor.sourceFormat": "fixed",
+  "files.trimTrailingWhitespace": false,
+  "files.insertFinalNewline": false,
+  "[cobol]": {
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
+  },
+  "files.associations": {
+    "*.jcl.txt": "jcl"
+  }
+}
