@@ -1,53 +1,46 @@
-Status of Programs:
+# z/OS example inventory
 
-['Beginning COBOL for Programmers' by Michael Coughlan](http://www.apress.com/9781430262534) :
+This inventory describes the sources retained in [Mainframe/ZOS](Mainframe/ZOS).
+Source or JCL availability does not imply that an example has been tested on
+your installation. See the [setup instructions and limitations](README.md).
 
-| Program | Description                               | gnuCobol |  ZOS  |  MVS  |
-| :------ | :---------------------------------------- | :------: | :---: | :---: |
-|         |                                           |          |       |       |
-| HELLO   | First Program                             |    X     |   X   |   X   |
-| BDS0702 | Listing7-1 - Read a file                  |    X     |   X   |   X   |
-| BDS0704 | Listing7-2 - Read a file                  |    X     |   X   |   X   |
-| BDS0801 | Listing8-1 - Heading Record               |    X     |   X   |   X   |
-| BDS0802 | Listing8-2 - Footer Record                |    X     |   X   |   X   |
-| BDS0803 | Listing8-3 - Print Report                 |    X     |   X   |       |
-| BDS0804 | Listing8-4 - Variable Length              |    X     |       |       |
-| BDS0805 | Listing8-5 - Summmary Report              |          |       |       |
-| BDS1001 | Listing10-1 - Control Break - 3 levels    |    X     |   X   |       |
-| BDS1002 | Listing10-2 - Control Break - 2 levels    |    X     |   X   |       |
-| BDS1003 | Listing10-3 - File Update                 |    X     |   X   |       |
-| BDS1004 | Listing10-4 - Full File Update - ver 1    |    X     |   X   |       |
-| BDS1005 | Listing10-5 - Full File Update - full ver |          |       |       |
-| BDS1101 | Listing11-1 - Tabular data report         |          |       |       |
-| BDS1102 | Listing11-2 - Tab data report - sum, avg  |          |       |       |
-| BDS1103 | Listing11-3 - 2-Dimensional Table         |          |       |       |
-| BDS1104 | Listing11-4 - 3 Control Breaks            |          |       |       |
+## Normal batch examples
 
+| Source | Description | Included JCL |
+| :----- | :---------- | :----------- |
+| [BDS0702](Mainframe/ZOS/Normal/cbl/BDS0702.cbl) | Read employee records | [BDS0702.jcl](Mainframe/ZOS/Normal/jcl/BDS0702.jcl) |
+| [BDS0704](Mainframe/ZOS/Normal/cbl/BDS0704.cbl) | Read gadget records | [BDS0704.jcl](Mainframe/ZOS/Normal/jcl/BDS0704.jcl) |
+| [BDS0801](Mainframe/ZOS/Normal/cbl/BDS0801.cbl) | Heading record | [BDS0801.jcl](Mainframe/ZOS/Normal/jcl/BDS0801.jcl) |
+| [BDS0802](Mainframe/ZOS/Normal/cbl/BDS0802.cbl) | Footer record | [BDS0802.jcl](Mainframe/ZOS/Normal/jcl/BDS0802.jcl) |
+| [BDS0803](Mainframe/ZOS/Normal/cbl/BDS0803.cbl) | Member report | [BDS0803.jcl](Mainframe/ZOS/Normal/jcl/BDS0803.jcl) |
+| [BDS0804](Mainframe/ZOS/Normal/cbl/BDS0804.cbl) | Variable-length records | Not included |
+| [BDS1001](Mainframe/ZOS/Normal/cbl/BDS1001.cbl) | Three-level control break | [BDS1001.jcl](Mainframe/ZOS/Normal/jcl/BDS1001.jcl) |
+| [BDS1002](Mainframe/ZOS/Normal/cbl/BDS1002.cbl) | Two-level control break | [BDS1002.jcl](Mainframe/ZOS/Normal/jcl/BDS1002.jcl) |
+| [BDS1003](Mainframe/ZOS/Normal/cbl/BDS1003.cbl) | File update | Not included |
+| [BDS1004](Mainframe/ZOS/Normal/cbl/BDS1004.cbl) | Full file update | Not included |
+| [CBL0106](Mainframe/ZOS/Normal/cbl/CBL0106.cbl) | Account report | [CBL0106J.jcl](Mainframe/ZOS/Normal/jcl/CBL0106J.jcl) |
+| [EXE4](Mainframe/ZOS/Normal/cbl/EXE4.cbl) | Weather report | [EXE4.jcl](Mainframe/ZOS/Normal/jcl/EXE4.jcl) |
+| [FAVRPT](Mainframe/ZOS/Normal/cbl/FAVRPT.cbl) | Favourites report | Not included |
+| [ODS0001](Mainframe/ZOS/Normal/cbl/ODS0001.cbl) | Account-report tutorial variant | Not included |
+| [ODS000C](Mainframe/ZOS/Normal/cbl/ODS000C.cbl) | Account record conversion | Not included |
+| [ODS0106](Mainframe/ZOS/Normal/cbl/ODS0106.cbl) | Account-report tutorial variant | Not included |
 
-[The Open Mainframe Project](https://www.openmainframeproject.org/projects/coboltrainingcourse) :
+The BDS examples follow
+['Beginning COBOL for Programmers' by Michael Coughlan](http://www.apress.com/9781430262534).
+The ODS examples follow
+[the Open Mainframe Project COBOL training course](https://www.openmainframeproject.org/projects/coboltrainingcourse).
 
-NOTE: Change in plan.
+## Other retained z/OS examples
 
-Most of the CBLXXXX programs are fairly straight forward.
+- [ECBAP sources](Mainframe/ZOS/ECBAP/cbl): reporting and validation workshops,
+  table handling, and the MAINPGM/SUB01-SUB05 subprogram examples. The
+  [course assignment history](README4.md) includes exercises whose source is
+  not distributed here.
+- [Internal-Sort](Mainframe/ZOS/Internal-Sort): five internal-sort examples,
+  local copybooks, and [sample JCL](Mainframe/ZOS/Internal-Sort/jcl/sort.jcl.txt).
+- [Zowe](Mainframe/ZOS/Zowe): initialization, data-set creation (including VSAM),
+  and a simple report example. Review the existing setup limitations in the
+  [main README](README.md) before using the scripts.
 
-I think my time would be better spent on more "advanced" topics like Tables, VSAM and DB2.
-
-I did convert CBL0001 to my "style" and by creating ODS000C, learned a few things.
-  * Converting COMP numbers to normal to be usable by gnuCobol.
-  * Using MOVE CORRESPONDING - Not something I normally do but it worked well for this.
-
-| Program | Description   | gnuCobol |  ZOS  |  MVS  |
-| :------ | :------------ | :------: | :---: | :---: |
-|         |               |          |       |       |
-| HELLO   | First Program |    X     |   X   |   X   |
-| ODS0001 | CBL0001       |    X     |   X   |       |
-| ODS0106 | CBL0106       |          |   X   |       |
-
-
-['The Punctilious Programmer' by David E. Woolbright ](https://punctiliousprogrammer.com/ibm-enterprise-cobol/):
-
-| Program | Description   | gnuCobol |  ZOS  |  MVS  |
-| :------ | :------------ | :------: | :---: | :---: |
-|         |               |          |       |       |
-| HELLO   | First Program |    X     |   X   |   X   |
-
+The [shared copybooks](common/cpy), [sample data](common/data), and
+[IBM batch template](pgm_templates/Batch/slt_base_ibm_batch.cob) remain available.

@@ -1,3 +1,12 @@
+# ECBAP course assignment history
+
+This is the historical learning record for the course, not a build or runtime
+test report. Some exercises refer to course-provided programs that are not
+included in this repository. The retained implementation is in
+[Mainframe/ZOS/ECBAP](Mainframe/ZOS/ECBAP), with shared inputs in
+[common/data/ECBAP](common/data/ECBAP). See the [z/OS inventory](README3.md) and
+[setup notes](README.md) for the files available here.
+
 [Enterprise COBOL For Business Application Programming](https://community.ibm.com/community/user/ibmz-and-linuxone/viewdocument/enterprise-cobol-for-business-appli?CommunityKey=b0dae4a8-74eb-44ac-86c7-90f3cd32909a&tab=librarydocuments) Assignments:
 
 | Assignment     | Description                               | Mandatory/Optional | Completed | Submitted |
