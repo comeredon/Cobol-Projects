@@ -1,9 +1,10 @@
 ---
 name: impact-analysis
-description: "Find everything affected by changing a copybook, record layout, or field: programs, COPY REPLACING expansions, JCL, and sample data."
-argument-hint: "Copybook or field and the change, e.g. 'PATIENT: Patient-Phone X(10) to X(12)'"
-agent: cobol-planner
+description: "Find copybook consumers and external contracts that a Java migration must preserve; read-only."
+argument-hint: "Copybook, field or program and proposed Java boundary"
+agent: migration-planner
 ---
 Run the `copybook-impact-analysis` skill for the change in the request, and
-report in that skill's format. Plan no edits beyond the recommended order of
-change, and do not edit files.
+report in that skill's format. Translate its impact findings into migration
+contract risks and parity scenarios. Do not propose changes to the legacy layout
+as part of Java modernization, and do not edit files.

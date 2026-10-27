@@ -1,3 +1,7 @@
 /.venv/
 **/__pycache__/
 *.pyc
+/.agent-runtime/
+/modernization/**/target/
+/modernization/**/build/
+/modernization/**/.gradle/

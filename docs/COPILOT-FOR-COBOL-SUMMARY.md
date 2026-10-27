@@ -1,5 +1,10 @@
 # GitHub Copilot for COBOL: setup summary
 
+> **Historical record for the `release` development profile.** Statements below
+> about removed modernization material and current agents describe that earlier
+> setup, not this branch. See the [modernization guide](modernization/README.md)
+> for the active COBOL-to-Java harness.
+
 This is a record of the work done on 2026-10-08 to turn this repository into a
 GitHub Copilot for COBOL demo. For the talk track itself, see the
 [demo guide](COPILOT-FOR-COBOL.md).

@@ -5,6 +5,10 @@ applyTo: "**/*.cbl,**/*.cpy,**/*.cob"
 ---
 # IBM Enterprise COBOL: fixed format and house style
 
+On the modernization branch, these rules describe the read-only legacy
+baseline. They are not permission to edit COBOL or copybooks. Preserve original
+bytes and record any defect or ambiguity in the migration contract.
+
 ## Fixed-format columns
 
 | Columns | Area | Rule |

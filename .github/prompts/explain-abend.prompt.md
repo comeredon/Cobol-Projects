@@ -2,7 +2,7 @@
 name: explain-abend
 description: "Explain an abend, file status, or return code from a job log or SYSOUT, and trace it to the likely COBOL statements."
 argument-hint: "Program plus the code or job log lines, e.g. 'TABLE1 file status 47 on TABLOAD'"
-agent: cobol-mentor
+agent: legacy-analyst
 ---
 Use the `zos-runtime-codes` skill to explain the failure in the request:
 

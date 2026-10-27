@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "python3 tools/agent_hooks/guardrails.py pre",
+        "powershell": "python tools/agent_hooks/guardrails.py pre",
+        "timeoutSec": 5
+      }
+    ]
+  }
+}

@@ -1,33 +1,39 @@
-# COBOL examples for IBM z/OS
+# COBOL-to-Java modernization
 
 This repository contains learning examples for IBM Enterprise COBOL on z/OS.
 The implementation is kept under [Mainframe/ZOS](Mainframe/ZOS); alternative
 platform implementations and unrelated utilities have been removed.
 These are independent batch programs and workshops, not one application with a
-single entry point.
+single entry point. On `modernization/cobol-to-java`, they are a **read-only
+behavioral baseline** for incremental Java modernization. No program has been
+translated and no Java stack or z/OS parity baseline is selected by this setup.
 
-## GitHub Copilot for COBOL developers
+## GitHub Copilot for modernization
 
-This repository also shows how to use GitHub Copilot for everyday COBOL work
-in VS Code with the Rocket COBOL extension. The COBOL stays COBOL: there is
-no conversion to another language. Start with the
-[demo guide](docs/COPILOT-FOR-COBOL.md), which covers tips for ISPF developers
-moving to VS Code, why a structured setup matters, and a step-by-step demo
-script.
+Start with the [agent contract](AGENTS.md) and
+[modernization guide](docs/modernization/README.md). The harness adapts the
+orchestration, narrow specialist roles, independent verification and evidence
+pattern of `comeredon/copilot-agentic-delivery-center` to COBOL-to-Java migration.
+The `release` branch retains the everyday COBOL-development profile; this branch
+replaces that profile rather than mixing two competing agent teams.
 
 The Copilot setup lives in [.github](.github):
 
-- Repository-wide and file-pattern instructions that pin IBM Enterprise COBOL,
-  fixed format, and this repository's conventions.
-- Slash commands such as `/explain-program`, `/review-cobol`,
-  `/impact-analysis`, and `/change-request`.
-- Skills for file status and abend codes, copybook impact analysis, and record
-  layouts.
-- A COBOL agent team: `cobol-lead` delegates to a mentor, planner, developer,
-  reviewer, JCL assistant, and test-data builder.
+- `modernization-lead` coordinates a legacy analyst, migration planner, Java
+  implementer, parity test engineer and independent migration verifier.
+- `/modernize-program` discovers a contract and stops for human approval before
+  coding. `/verify-migration` checks actual build and differential evidence.
+- Skills cover discovery, slicing, semantic mapping, synthetic parity cases and
+  verification, alongside the retained COBOL layout/impact/runtime skills.
+- Hooks protect legacy assets and harness controls and allow only bounded
+  commands. Harness tests run locally and in the included GitHub workflow.
+- Evidence records distinguish Java checks from observed z/OS parity. Missing
+  baselines block equivalence claims; the harness does not authorize cutover.
 
 Workspace settings in [.vscode](.vscode) set Rocket to the Enterprise COBOL
-for z/OS dialect and recommend the required extensions.
+for z/OS dialect for reading the baseline and recommend the Java extension pack.
+Select the target Java toolchain during slice approval; no framework is
+prescribed in advance.
 
 ## Repository layout
 
@@ -39,7 +45,10 @@ for z/OS dialect and recommend the required extensions.
 | [Zowe](Mainframe/ZOS/Zowe) | Data-set initialization, allocation, VSAM, and report examples using Zowe CLI. |
 | [Shared copybooks](common/cpy) | Record layouts and helpers used by the z/OS examples. |
 | [Sample data](common/data) | Tutorial inputs and sample outputs, including [ECBAP data](common/data/ECBAP). |
-| [Supporting documentation](docs) | The [Copilot demo guide](docs/COPILOT-FOR-COBOL.md) and the hospital-edit calculation workbook supporting the [hospital workshop](Mainframe/ZOS/ECBAP/cbl/WS162E.cbl). |
+| [Modernization guide](docs/modernization) | Active migration workflow, guardrail limits and evidence rules. |
+| `modernization/<slice>/` | Future approved Java production code and tests; no application scaffold yet. |
+| `test-data/modernization/<slice>/` | Future synthetic migration fixtures, separate from legacy samples. |
+| [Supporting documentation](docs) | Historical COBOL-development demo guides and the hospital-edit calculation workbook. |
 | [IBM batch template](pgm_templates/Batch/slt_base_ibm_batch.cob) | Starting point for an IBM COBOL batch program. |
 
 Keep the shared files alongside the z/OS tree. For example,
@@ -100,8 +109,9 @@ training environment:
 The platform cleanup preserves the z/OS sources, JCL, scripts, copybooks, and
 data unchanged. Compilation and execution must be verified on your target z/OS
 system; no local COBOL automated test suite is provided. Copilot agents in this
-repository never compile, run, or submit jobs; they hand you the steps to verify
-on z/OS.
+repository never compile COBOL, run z/OS jobs, or submit them; they hand you the
+steps to verify on z/OS. The modernization verifier may execute approved local
+Java checks, but cannot claim they establish z/OS parity on their own.
 
 ## Documentation
 
@@ -109,5 +119,6 @@ on z/OS.
 - [z/OS example inventory](README3.md)
 - [ECBAP course assignment history](README4.md)
 - [Internal sort notes](Mainframe/ZOS/Internal-Sort/README.md)
-- [GitHub Copilot for COBOL developers: demo guide](docs/COPILOT-FOR-COBOL.md)
-- [GitHub Copilot for COBOL: setup summary](docs/COPILOT-FOR-COBOL-SUMMARY.md)
+- [COBOL-to-Java modernization guide](docs/modernization/README.md)
+- [Historical COBOL-development demo guide](docs/COPILOT-FOR-COBOL.md)
+- [Historical COBOL-development setup summary](docs/COPILOT-FOR-COBOL-SUMMARY.md)

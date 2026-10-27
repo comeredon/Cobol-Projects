@@ -3,6 +3,7 @@
     "rocketsoftware.rocket-cobol",
     "rocketsoftware.rocket-enterprise",
     "github.copilot-chat",
+    "vscjava.vscode-java-pack",
     "zowe.vscode-extension-for-zowe"
   ]
 }

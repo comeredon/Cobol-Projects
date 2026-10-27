@@ -5,6 +5,10 @@ applyTo: "**/*.jcl,**/*.JCL,**/*.jcl.txt"
 ---
 # z/OS JCL conventions
 
+On the modernization branch, use these conventions to interpret the read-only
+job contract. Do not create or modify JCL, allocate datasets or submit jobs.
+Derive Java batch integration requirements from the actual job, not a template.
+
 - JCL statements are 80-byte records. Columns 1-2 hold `//`, and a name starts
   in column 3 (maximum 8 characters). Parameters end by column 71; leave
   column 72 blank. To continue a statement, end the line after a comma, then

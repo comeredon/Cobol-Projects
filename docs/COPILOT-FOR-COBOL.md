@@ -1,5 +1,10 @@
 # GitHub Copilot for COBOL developers
 
+> **Historical development profile.** This guide describes the `release` branch,
+> not the active modernization agent team. Its agent names, writing commands and
+> reset steps are not instructions for this branch. Use the
+> [modernization guide](modernization/README.md) here.
+
 This is a demo guide and talk track for COBOL developers moving from ISPF to
 VS Code with the Rocket COBOL extension. It shows what GitHub Copilot can do
 with IBM Enterprise COBOL, and why a structured setup (instructions, prompt

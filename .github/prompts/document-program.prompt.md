@@ -1,12 +1,12 @@
 ---
 name: document-program
-description: "Write or refresh a Markdown reference page for one COBOL program in docs/programs, with source-linked business rules, files, flow, and return codes."
-argument-hint: "Program name or path, e.g. WS162E"
+description: "Document a legacy program's contract for a migration slice without altering the source."
+argument-hint: "Program path and migration slice ID"
 agent: agent
 tools: [read, search, edit]
 ---
-Create or update `docs/programs/<NAME>.md` for the COBOL program named in the
-request, where `<NAME>` is the source file name (for example `WS162E.md`). Read
+Create or update `docs/modernization/<slice>/legacy-contract.md` for the COBOL
+program and slice named in the request. Ask if either is missing. Read
 the program, its copybooks, its JCL, and matching sample data first. Do not
 change any other file.
 
