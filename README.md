@@ -20,9 +20,12 @@ replaces that profile rather than mixing two competing agent teams.
 The Copilot setup lives in [.github](.github):
 
 - `modernization-lead` coordinates a legacy analyst, migration planner, Java
-  implementer, parity test engineer and independent migration verifier.
+  implementer, parity test engineer, read-only rubber duck and independent
+  migration verifier.
 - `/modernize-program` discovers a contract and stops for human approval before
-  coding. `/verify-migration` checks actual build and differential evidence.
+  coding. Rubber-duck review challenges the plan before approval; tests and
+  synthetic fixtures are authored and reviewed before production implementation.
+  `/verify-migration` checks actual build and differential evidence.
 - Skills cover discovery, slicing, semantic mapping, synthetic parity cases and
   verification, alongside the retained COBOL layout/impact/runtime skills.
 - Hooks protect legacy assets and harness controls and allow only bounded

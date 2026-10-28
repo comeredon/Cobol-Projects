@@ -7,9 +7,15 @@ applyTo: "modernization/**/*.java,modernization/**/pom.xml,modernization/**/*.gr
 - Use the approved JDK and build tool. Pin dependencies/plugins; no dynamic
   versions, speculative frameworks, reflection-heavy translation or new runtime
   services without approval. No build descriptor exists until a slice is approved.
+- Plain Java with Maven and JUnit is the minimal proposed batch stack; Spring or
+  Quarkus requires an explicit need and approval. Pin compiler release, test
+  library and test-runner plugin versions to the approved target JDK.
 - Keep each slice self-contained under `modernization/<slice>/`, normally with
   `src/main/java` and `src/test/java`. Production, tests and record codecs have
   explicit ownership. Do not edit legacy source or shared sample data.
+- Author tests and synthetic fixtures against approved interfaces before
+  production implementation. Resolve rubber-duck review blockers first; do not
+  weaken tests to fit Java behavior or claim an unexecuted red/green cycle.
 - Separate business logic from encoding, files, clocks and runtime exit handling.
   Make these dependencies explicit and deterministic in tests.
 - Use `BigDecimal` from exact decimal text/unscaled integers for exact decimal

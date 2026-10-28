@@ -33,7 +33,7 @@ The ODS examples follow
 ## Other retained z/OS examples
 
 - [ECBAP sources](Mainframe/ZOS/ECBAP/cbl): reporting and validation workshops,
-  table handling, and the MAINPGM/SUB01-SUB05 subprogram examples. The
+  table handling, and the MAINPGM/SUB01-SUB06 subprogram examples. The
   [course assignment history](README4.md) includes exercises whose source is
   not distributed here.
 - [Internal-Sort](Mainframe/ZOS/Internal-Sort): five internal-sort examples,

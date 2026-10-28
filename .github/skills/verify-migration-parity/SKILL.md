@@ -6,7 +6,9 @@ description: "Independently verify an approved Java slice against trusted COBOL 
 
 1. Confirm you authored neither production nor test changes. Read the user
    approval, contract, exact source revision/hashes, diff and scenario matrix.
-   Reapproval is needed if the implemented contract differs.
+   Check test-first authoring and rubber-duck findings/resolutions; readiness
+   recommendations do not establish execution or parity. Reapproval is needed
+   if the implemented contract differs.
 2. Run the harness check:
    `python3 -m unittest discover -s tests/guardrails -v`.
    This checks guardrails/evidence structure, not the migration itself.
@@ -16,6 +18,15 @@ description: "Independently verify an approved Java slice against trusted COBOL 
    command, exit code, relevant output and artifacts. If a command is blocked
    by the hook allowlist, escalate for human-owned harness maintenance; do not
    wrap it in another interpreter or weaken the hook.
+   After successful Java build/tests, run the approved application demonstration
+   command against its synthetic fixture. Capture the working directory,
+   input/case ID, actual stdout/stderr, exit code and generated-file paths.
+   Show a bounded actual output preview, labeling truncation; for non-text
+   records show an explicit decoded or hex view without changing raw bytes.
+   Return the transcript and output references to the test engineer to persist
+   in case documentation. Include the demo command under the existing `java`
+   gate in evidence; a required failed/unrun demo makes that gate fail/blocked.
+   A successful test suite is not a substitute for running the application.
 5. Check every case against trusted sanitized z/OS evidence and its provenance.
    Compare bytes, decimal results, ordering, messages and errors/exit status.
    Confirm normalization is approved and missing files cannot pass.

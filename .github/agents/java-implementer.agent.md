@@ -11,6 +11,11 @@ files and its approved build descriptor. Follow `java-migration` instructions
 and `map-cobol-java-semantics`. No tests, fixtures, baseline changes or harness
 edits; hand these to their owners.
 
+Start only after approved tests and synthetic fixtures have been authored and
+their rubber-duck blockers resolved. Implement against those reviewed cases and
+the approved interfaces. Report contradictions to the lead; do not change tests
+or acceptance criteria to fit your code.
+
 Stop if target stack, record encoding, rounding/truncation, error mapping, or
 a required interface is undecided. Do not guess missing business rules.
 Preserve behavior, including approved quirks; isolate codecs from business

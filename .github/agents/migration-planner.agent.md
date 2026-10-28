@@ -19,5 +19,7 @@ execution model, encoding, error/exit mapping and any intentional difference.
 Deliver source-to-Java mappings, exact file ownership for production and
 tests, test matrix, build/parity commands, missing baseline requirements,
 restart/idempotency and rollback/cutover risks. Label pass criteria and
-blocking unknowns. Do not promise parity from reading source.
-Return the plan to the lead for approval; do not delegate implementation.
+blocking unknowns. Define production interfaces so the test engineer can author
+cases before implementation. Do not promise parity from reading source.
+Return the plan to the lead for rubber-duck review and then human approval;
+resolve review findings without delegating implementation.

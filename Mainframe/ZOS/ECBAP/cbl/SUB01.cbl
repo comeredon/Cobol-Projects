@@ -7,6 +7,7 @@
            05  CF-E     PIC X(05).
            05  CF-F     PIC X(05).
            05 G-PROG PIC X(05).
+       01  WS-SUB06-Result PIC X(05).
        LINKAGE SECTION.
        01  LF-A     PIC X(05).  *> Linkage Parms
        01  LF-B     PIC X(05).  *> Data values
@@ -44,6 +45,11 @@
 
            CALL G-PROG USING LF-G.
            DISPLAY "In SUB01:After dynamic call: "
+              LF-A, LF-B, LF-C, LF-D, LF-E, LF-F, LF-G.
+
+           CALL 'SUB06' USING WS-SUB06-Result.
+           MOVE WS-SUB06-Result TO LF-A.
+           DISPLAY "In SUB01:After SUB06 - After MOVE: "
               LF-A, LF-B, LF-C, LF-D, LF-E, LF-F, LF-G.
 
            GOBACK. *> Control returned to MAIN

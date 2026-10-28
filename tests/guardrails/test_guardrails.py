@@ -282,7 +282,7 @@ class ConfigurationTests(unittest.TestCase):
             self.assertEqual(path.name, name + ".agent.md")
             self.assertNotIn(name, agents)
             agents[name] = metadata
-        self.assertEqual(len(agents), 6)
+        self.assertEqual(len(agents), 7)
         lead = agents["modernization-lead"]
         delegates = set(lead["agents"].strip(" []").split(", "))
         self.assertEqual(delegates, set(agents) - {"modernization-lead"})
@@ -290,6 +290,8 @@ class ConfigurationTests(unittest.TestCase):
         self.assertNotIn("edit", lead["tools"])
         self.assertNotIn("edit", agents["migration-verifier"]["tools"])
         self.assertNotIn("execute", agents["java-implementer"]["tools"])
+        self.assertEqual(agents["migration-rubber-duck"]["tools"].strip(),
+                         "[read, search]")
         for path in (ROOT / ".github/prompts").glob("*.prompt.md"):
             metadata = frontmatter(path)
             self.assertIn("description", metadata)

@@ -44,16 +44,21 @@ flowchart TD
     U[Human request] --> L[Modernization lead]
     L --> A[Legacy analyst: discover contract]
     A --> P[Migration planner: bounded Java slice]
-    P --> H{Explicit human approval}
+    P --> D[Rubber duck: challenge plan]
+    D -->|Blockers: owners repair, at most two attempts| P
+    D -->|Ready recommendation| H{Explicit human approval}
     H -->|Not yet| P
-    H -->|Approved| I[Java implementer]
-    I --> T[Parity test engineer]
-    T --> V[Independent migration verifier]
-    V --> G{Java and z/OS parity evidence}
+    H -->|Approved| T[Parity test engineer: author tests and fixtures first]
+    T --> C[Rubber duck: challenge coverage and assertions]
+    C -->|Blockers: owners repair, at most two attempts| T
+    C -->|Ready recommendation| I[Java implementer: satisfy reviewed cases]
+    I --> V[Independent migration verifier]
+    V --> O[Run approved app demo: show actual output and exit code]
+    O --> G{Java and z/OS parity evidence}
     G -->|Missing evidence| B[Blocked: request sanitized baseline]
     G -->|Mismatch| R[Repair within two-attempt budget]
     R --> I
-    G -->|All pass| D[Evidence handoff: no automatic cutover]
+    G -->|All pass| E[Evidence handoff: no automatic cutover]
 ```
 
 The analyst, planner and lead do not write files. The implementer owns production
@@ -61,11 +66,94 @@ code and the approved build descriptor. The test engineer owns tests, synthetic
 fixtures and case documentation. The verifier authored neither and cannot edit.
 Use fewer roles for simple read-only questions; never manufacture independence.
 
+### Test-first authoring and rubber ducking
+
+`migration-rubber-duck` is a read-only challenger, not another implementer or
+the final verifier. Before human approval, it checks the plan against source
+evidence for unsupported assumptions, semantic gaps and unclear interfaces or
+acceptance criteria. After approval, the test engineer authors tests, synthetic
+fixtures and a rule-to-case matrix against the planned interfaces before
+production implementation. The rubber duck then challenges coverage, exact-byte
+assertions, failure paths and baseline provenance.
+
+The lead routes material findings to their owners and stops implementation until
+blockers are resolved. Findings identify source locations, the concrete failure
+scenario, affected rules/cases and the required clarification or correction.
+Each checkpoint returns findings, unresolved questions and a `ready` or `blocked`
+recommendation. Stop after two unsuccessful repair rounds at a checkpoint.
+Changed contracts, interfaces or acceptance criteria require human reapproval;
+never weaken tests to fit Java output.
+
+The implementer receives the reviewed cases and approved contract. The verifier
+receives both rubber-duck reviews and their resolutions alongside the actual
+build/test and differential evidence. Rubber-duck readiness is neither human
+approval nor a verification/parity pass. Tests authored before production may
+not yet compile or run; do not call that an observed failing behavior test or
+claim an executed red/green cycle.
+
+### Synthetic data and dependency mocks
+
+During planning, inventory each scenario's required input records, encoding,
+expected outputs, fixture/generator paths, external dependencies and owner.
+Mark data as needed, available or not applicable with a reason. After approval,
+the test engineer creates missing deterministic synthetic fixtures or generators
+before production implementation, keeping case IDs and input hashes traceable.
+Cover normal, empty, boundary, malformed and failure/restart cases where relevant.
+Use no real customer data and leave legacy sample files unchanged.
+
+Mocks or fakes are appropriate only at approved external boundaries, such as a
+clock or unavailable service, with specified responses and failures. Unknown
+dependency behavior needs clarification, not a fabricated stub contract. Test
+actual codecs, decimal calculations and file adapters using synthetic records;
+mocking these would hide the behavior being verified. The rubber duck checks
+fixture coverage and mock boundaries before implementation.
+
+Synthetic expected results inferred from source support Java characterization,
+not observed COBOL parity. Differential verification still needs trusted,
+sanitized z/OS results for the same synthetic inputs and environment provenance.
+
+### Show the running application's results
+
+Each slice plan includes an approved application entry point and run command,
+working directory, deterministic synthetic demonstration input, expected result
+and isolated output paths. After Java build/tests succeed, the independent
+verifier runs that entry point and returns actual stdout/stderr, process exit
+code and generated-file paths. A Maven/JUnit summary alone is not an application
+demonstration. This requires a runnable slice; installed tools alone produce no
+application result.
+
+The handoff shows the command, input/case ID and a bounded actual output preview.
+For file-only applications, preview the generated file; for binary or EBCDIC
+records, show a labeled decoded or hex view while preserving the original bytes.
+Label truncated previews and link the full captured transcript/output references,
+which the test engineer persists in assigned case documentation. Never replace
+expected fixtures or z/OS baselines with demonstration output.
+
+Record the demonstration command in evidence under the existing `java` gate.
+A failed required run makes that gate `fail`; an unrun/blocked command makes it
+`blocked`. Demonstration success remains distinct from trusted z/OS parity.
+Commands still require slice approval and applicable host permission. If hook
+policy blocks a run, report it and request human-owned policy maintenance; do not
+alter hooks, disguise the command or bypass controls.
+
 ## Starting a slice
 
 The workspace recommends the VS Code Java extension pack alongside Rocket for
 reading the legacy baseline. Recommendations do not install extensions or select
 a JDK. Approve the Java toolchain and dependencies with the first slice.
+
+### Java prerequisites
+
+A Java framework such as Spring Boot or Quarkus is optional, not a machine-level
+prerequisite. A small batch slice can use plain Java. Compiling and running it
+requires an approved JDK (including `java` and `javac`); a JRE alone is not enough.
+Maven or Gradle manages builds and project dependencies, including a test library
+such as JUnit. Frameworks and test libraries, if approved, are project dependencies
+rather than separate global framework installations.
+
+Check tool availability during planning. Do not install a JDK, build tool,
+framework or test dependencies until the slice's stack and commands are approved.
+Available tools do not select the target Java version or establish a passing build.
 
 Select `modernization-lead` or use `/modernize-program`:
 
@@ -162,7 +250,7 @@ Repository-only controls must not be presented as enterprise-wide enforcement.
 ### Host smoke check
 
 In a new trusted session that has loaded this branch's configuration, confirm
-the six migration agents appear and the removed writing agents do not. Reload
+the seven migration agents appear and the removed writing agents do not. Reload
 the host/session if it cached the development profile.
 Ask to read a public repository document, then request a dry denied edit to a
 legacy file and a dry denied shell command such as `git push`. Confirm the hook
