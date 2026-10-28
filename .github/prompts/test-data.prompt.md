@@ -10,3 +10,5 @@ scenarios are missing, ask before writing. Write only under
 Do not change legacy samples or claim inferred expected values are golden results.
 Author fixtures and tests against approved interfaces before production code,
 then return them to the lead for rubber-duck review. Do not claim execution.
+hi
+
